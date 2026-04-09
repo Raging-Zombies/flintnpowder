@@ -26,7 +26,7 @@ public class FlintlockBase extends GunBase {
         super(pProperties);
     }
 
-    public int GunpowderRequired = 3;
+    public int GunpowderRequired = 1;
 
     public void onGunpowder(Level pLevel, LivingEntity shooter, ItemStack gun, InteractionHand pUsedHand) {
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
