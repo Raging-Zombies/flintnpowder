@@ -20,7 +20,8 @@ import java.util.Map;
 
 public class BaseAmmo extends Item {
 
-    public float damage = 0 ;
+    public float damage = 0;
+    public boolean customDescription = false;
 
     public BaseAmmo(Properties pProperties) {
         super(pProperties);
@@ -31,10 +32,11 @@ public class BaseAmmo extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.literal(""));
-        pTooltipComponents.add(Component.translatable("flintnpowder.projectile_damage")
-                .append(String.valueOf(this.damage)).withStyle(ChatFormatting.DARK_GREEN));
-
+        if (!customDescription) {
+            pTooltipComponents.add(Component.literal(""));
+            pTooltipComponents.add(Component.translatable("flintnpowder.projectile_damage")
+                    .append(String.valueOf(Math.round(this.damage))).withStyle(ChatFormatting.DARK_GREEN));
+        }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }
