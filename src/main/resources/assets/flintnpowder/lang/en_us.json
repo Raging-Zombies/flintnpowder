@@ -1,7 +1,14 @@
 {
   "flintnpowder.gunpowder": "Gunpowder: ",
-  "flintnpowder.no_payload": "No ammo",
   "flintnpowder.payload": "Ammo: ",
+  "flintnpowder.no_payload": "No ammo",
+  "flintnpowder.magazine": "Magazine:",
+  "flintnpowder.no_magazine": "No magazine",
+
+  "item.flintnpowder.handgunmag": "Handgun Magazine",
+
+  "flintnpowder.magempty": "Magazine empty",
+  "flintnpowder.magazine": "Magazine:",
 
   "flintnpowder.chamberopen": "[CHAMBER OPEN]",
   "flintnpowder.uncocked": "[UNCOCKED]",
