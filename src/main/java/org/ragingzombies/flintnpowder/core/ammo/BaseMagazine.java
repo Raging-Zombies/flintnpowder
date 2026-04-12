@@ -16,9 +16,11 @@ import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseMagazine extends Item {
+    public static List<Class> allowedAmmo = new ArrayList<>();
 
     public static int maxAmmo = 30;
 
@@ -26,7 +28,17 @@ public class BaseMagazine extends Item {
         super(pProperties);
     }
 
+    public static void addAllowedAmmo(Class ammo) {
+        allowedAmmo.add(ammo);
+    }
+
     public boolean allowAmmo(ItemStack ammo) {
+        for (Class a : allowedAmmo) {
+            if (ammo.getItem().getClass() == a) {
+                return true;
+            }
+        }
+
         return false;
     }
 

@@ -30,7 +30,7 @@ public class AttachmentRenderer extends BlockEntityWithoutLevelRenderer {
 
     public AttachmentRenderer(BlockEntityRenderDispatcher pBlockEntityRenderDispatcher, EntityModelSet pEntityModelSet) {
         super(pBlockEntityRenderDispatcher, pEntityModelSet);
-        Flintnpowder.LOGGER.debug("HEY!!!! HEU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        Flintnpowder.LOGGER.info("=== AttachmentRenderer CONSTRUCTOR CALLED ===");
     }
 
     @Override
@@ -39,7 +39,6 @@ public class AttachmentRenderer extends BlockEntityWithoutLevelRenderer {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
         BakedModel base = Minecraft.getInstance().getItemRenderer().getModel(stack, null, null, 0);
-
 
         Flintnpowder.LOGGER.info("custom model is rendered.");
 
