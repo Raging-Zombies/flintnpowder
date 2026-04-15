@@ -100,6 +100,12 @@
   "item.flintnpowder.trapdoor_rifle.description_2": "§2Calibre: Rifle Round",
   "item.flintnpowder.trapdoor_rifle.description_3": "",
 
+  "item.flintnpowder.break_action_coachgun": "Break Action Coachgun",
+  "item.flintnpowder.break_action_coachgun.description_0": "§6Blazelock: No need for additional gunpowder or ramrod",
+  "item.flintnpowder.break_action_coachgun.description_1": "§2Two handed: Empty Offhand required",
+  "item.flintnpowder.break_action_coachgun.description_2": "§2Calibre: Shotgun Shell",
+  "item.flintnpowder.break_action_coachgun.description_3": "§22 Rounds capacity",
+
   "item.flintnpowder.pistol": "Pistol",
   "item.flintnpowder.pistol.description_0": "§6Flintlock: No flint and steel is required to fire",
   "item.flintnpowder.pistol.description_1": "§2Calibre: Copper Roundshot",

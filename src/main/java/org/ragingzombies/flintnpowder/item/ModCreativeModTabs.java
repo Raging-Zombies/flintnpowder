@@ -49,6 +49,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItemsGuns.ARQUEBUS.get());
                         pOutput.accept(ModItemsGuns.SINGLEACTIONREVOLVER.get());
                         pOutput.accept(ModItemsGuns.TRAPDOORRIFLE.get());
+                        pOutput.accept(ModItemsGuns.BREAKACTIONCOACHGUN.get());
                         pOutput.accept(ModItemsGuns.PUMPACTIONSHOTGUN.get());
                         pOutput.accept(ModItemsGuns.SEMIAUTOPISTOL.get());
                         pOutput.accept(ModItems.RAMROD.get());

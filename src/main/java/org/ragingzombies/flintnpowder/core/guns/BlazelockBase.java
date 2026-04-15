@@ -44,7 +44,7 @@ public class BlazelockBase extends GunBase {
         setReloadAnimation(gun);
 
         if (shooter instanceof Player ply) {
-            ply.getCooldowns().addCooldown(this, shootCooldown(ply, gun));
+            ply.getCooldowns().addCooldown(this, cooldownTicks);
         }
     }
 
@@ -55,7 +55,7 @@ public class BlazelockBase extends GunBase {
         setAimAnimation(gun);
 
         if (shooter instanceof Player ply) {
-            ply.getCooldowns().addCooldown(this, shootCooldown(ply, gun));
+            ply.getCooldowns().addCooldown(this, cooldownTicks);
         }
     }
 

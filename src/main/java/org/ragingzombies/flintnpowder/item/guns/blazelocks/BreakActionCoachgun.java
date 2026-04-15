@@ -15,8 +15,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.BlazelockBase;
-import org.ragingzombies.flintnpowder.item.ammo.PistolRound;
 import org.ragingzombies.flintnpowder.item.ammo.RifleRound;
+import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShell;
+import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellDragon;
+import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellSlug;
 import org.ragingzombies.flintnpowder.item.attachments.HighProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
@@ -25,17 +27,16 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class TrapdoorRifle extends BlazelockBase {
-    public TrapdoorRifle(Properties pProperties) {
+public class BreakActionCoachgun extends BlazelockBase {
+    public BreakActionCoachgun(Properties pProperties) {
         super(pProperties);
-        maxAmmo = 1;
-        shootCooldownTicks = 15;
-        needCocking = true;
+        maxAmmo = 2;
+        shootCooldownTicks = 5;
+        needCocking = false;
 
-        addAllowedAmmo(RifleRound.class);
-
-        addAllowedAttachment(HighProfileOptic.class);
-        addAllowedAttachment(LowProfileOptic.class);
+        addAllowedAmmo(ShotgunShell.class);
+        addAllowedAmmo(ShotgunShellSlug.class);
+        addAllowedAmmo(ShotgunShellDragon.class);
     }
 
     @Override
@@ -54,16 +55,11 @@ public class TrapdoorRifle extends BlazelockBase {
     @Override
     public void onAmmoInsert(Level pLevel, LivingEntity shooter, ItemStack gun, InteractionHand pUsedHand) {
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
-                ModSounds.RIFLERELOAD.get(), SoundSource.NEUTRAL, 1.0F, 1.0F, 0);
+                ModSounds.SHOTGUNRELOAD.get(), SoundSource.NEUTRAL, 1.0F, 1.0F, 0);
 
         if (shooter instanceof Player ply) {
             ply.getCooldowns().addCooldown(this, 5);
         }
-    }
-
-    @Override
-    public float accuracyModifier(UUID ply){
-        return 0F * super.accuracyModifier(ply);
     }
 
     @Override
@@ -72,7 +68,7 @@ public class TrapdoorRifle extends BlazelockBase {
                 ModSounds.FLINTPRIME.get(), SoundSource.NEUTRAL, 1.0F, 1.0F, 0);
 
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
-                 ModSounds.RIFLESHOOT.get(), SoundSource.NEUTRAL, 8.0F, 1.0F, 0);
+                 ModSounds.SHOTGUNSHOT.get(), SoundSource.NEUTRAL, 4.0F, 1.0F, 0);
 
 
         // Particles
@@ -119,10 +115,10 @@ public class TrapdoorRifle extends BlazelockBase {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.literal(""));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.trapdoor_rifle.description_0"));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.trapdoor_rifle.description_1"));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.trapdoor_rifle.description_2"));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.trapdoor_rifle.description_3"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.break_action_coachgun.description_0"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.break_action_coachgun.description_1"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.break_action_coachgun.description_2"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.break_action_coachgun.description_3"));
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

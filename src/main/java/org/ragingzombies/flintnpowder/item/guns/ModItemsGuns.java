@@ -14,6 +14,7 @@ import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellDragon;
 import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellSlug;
 import org.ragingzombies.flintnpowder.item.attachments.Bayonet;
 import org.ragingzombies.flintnpowder.item.attachments.Silencer;
+import org.ragingzombies.flintnpowder.item.guns.blazelocks.BreakActionCoachgun;
 import org.ragingzombies.flintnpowder.item.guns.blazelocks.TrapdoorRifle;
 import org.ragingzombies.flintnpowder.item.guns.flintlocks.*;
 import org.ragingzombies.flintnpowder.item.guns.magfed.SemiPistol;
@@ -39,6 +40,8 @@ public class ModItemsGuns {
 
     public static final RegistryObject<Item> SINGLEACTIONREVOLVER = ITEMS.register("single_action_revolver",
             () -> new SingleActionRevolver(new SingleActionRevolver.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BREAKACTIONCOACHGUN = ITEMS.register("break_action_coachgun",
+            () -> new BreakActionCoachgun(new BreakActionCoachgun.Properties().stacksTo(1)));
     public static final RegistryObject<Item> TRAPDOORRIFLE = ITEMS.register("trapdoor_rifle",
             () -> new TrapdoorRifle(new TrapdoorRifle.Properties().stacksTo(1)));
 
