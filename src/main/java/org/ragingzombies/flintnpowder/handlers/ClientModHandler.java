@@ -58,6 +58,14 @@ public class ClientModHandler {
                     return stack.getOrCreateTag().getBoolean("HaveBayonet") ? 1.0F : 0.0F;
                 }
         );
+        // Coachgun
+        ItemProperties.register(
+                ModItemsGuns.BREAKACTIONCOACHGUN.get(),
+                new ResourceLocation(MOD_ID, "break_action_coachgun_opened"),
+                (stack, level, entity, seed) -> {
+                    return stack.getOrCreateTag().getBoolean("ChamberOpen") ? 1.0F : 0.0F;
+                }
+        );
         // Trapdoor
         ItemProperties.register(
                 ModItemsGuns.TRAPDOORRIFLE.get(),
