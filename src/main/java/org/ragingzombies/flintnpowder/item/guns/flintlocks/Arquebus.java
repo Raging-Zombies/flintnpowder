@@ -28,10 +28,12 @@ import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
 import org.ragingzombies.flintnpowder.core.guns.GunBase;
 import org.ragingzombies.flintnpowder.handlers.ServerTickHandler;
 import org.ragingzombies.flintnpowder.item.ammo.CastIronRoundshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.ammo.SteelRoundshot;
 import org.ragingzombies.flintnpowder.item.attachments.Bayonet;
 import org.ragingzombies.flintnpowder.item.attachments.HighProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
+import org.ragingzombies.flintnpowder.item.attachments.ModItemsAttachments;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
@@ -50,10 +52,11 @@ public class Arquebus extends FlintlockBase {
 
         noCock = true;
 
-        addAllowedAmmo(CastIronRoundshot.class);
-        addAllowedAmmo(SteelRoundshot.class);
 
-        addAllowedAttachment(LowProfileOptic.class);
+        addAllowedAmmo(ModItemsAmmo.CASTIRONROUNDSHOT.get());
+        addAllowedAmmo(ModItemsAmmo.STEELROUNDSHOT.get());
+
+        addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
     }
 
 

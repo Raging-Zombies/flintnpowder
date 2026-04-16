@@ -24,6 +24,10 @@
   "flintnpowder.ammo": "Ammo: ",
   "flintnpowder.projectile_damage": "Projectile damage: ",
 
+  "flintnpowder.guninfoshift": "§6Hold [SHIFT] to view information about comparable ammo and attachments.",
+  "flintnpowder.guninfoattachment": "§2Comparable attachment: ",
+  "flintnpowder.guninfoammo": "§2Comparable ammo: ",
+
   "fnp.creativetab.firearms": "Flint'N'Powder - Firearms",
   "fnp.creativetab.ammunition": "Flint'N'Powder - Ammunition",
 
@@ -43,6 +47,7 @@
   "item.flintnpowder.lpoptic": "Low Profile Optic",
   "item.flintnpowder.lpoptic.description": "§2Allow too zoom to small distances",
 
+  "item.flintnpowder.blunderbuss": "Blunderbuss",
   "item.flintnpowder.musket": "Musket",
   "item.flintnpowder.musket.description_0": "§6Flintlock: No flint and steel is required to fire",
   "item.flintnpowder.musket.description_1": "§2Calibre: Cast Iron Roundshot, Steel Roundshot",
@@ -65,11 +70,13 @@
   "item.flintnpowder.copper_volleyshot": "Copper Volleyshot",
 
   "item.flintnpowder.castironroundshot": "Cast Iron Roundshot",
-  "item.flintnpowder.steelroundshot": "Cast Iron Roundshot",
+  "item.flintnpowder.steel_roundshot": "Steel Roundshot",
   "item.flintnpowder.shotgunshell": "12 Gauge Shotgun Shell",
   "item.flintnpowder.shotgunshellslug": "12 Gauge Slug Shotgun Shell",
   "item.flintnpowder.shotgunshelldragon": "12 Gauge Dragon Breath Shotgun Shell",
   "item.flintnpowder.shotgunshelldragon.description": "Shoots with burning powder",
+
+  "item.flintnpowder.flaming_buckshot": "Flaming Buckshot",
 
   "item.flintnpowder.pistol_round": "Pistol Round",
   "item.flintnpowder.rifle_round": "Rifle Round",

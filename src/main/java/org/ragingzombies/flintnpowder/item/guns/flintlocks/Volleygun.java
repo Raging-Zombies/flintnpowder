@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
 import org.ragingzombies.flintnpowder.item.ammo.CopperRoundshot;
 import org.ragingzombies.flintnpowder.item.ammo.CopperVolleyshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
@@ -29,7 +30,8 @@ public class Volleygun extends FlintlockBase {
         super(pProperties);
         shootCooldownTicks = 25;
         noCock = true;
-        addAllowedAmmo(CopperVolleyshot.class);
+
+        addAllowedAmmo(ModItemsAmmo.COPPERVOLLEYSHOT.get());
     }
 
     @Override

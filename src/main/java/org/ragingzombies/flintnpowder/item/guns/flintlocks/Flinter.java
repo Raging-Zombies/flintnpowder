@@ -17,6 +17,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
 import org.ragingzombies.flintnpowder.item.ammo.CopperRoundshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.ammo.PistolRound;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
@@ -32,7 +33,7 @@ public class Flinter extends FlintlockBase {
 
         noCock = true;
 
-        addAllowedAmmo(CopperRoundshot.class);
+        addAllowedAmmo(ModItemsAmmo.COPPERROUNDSHOT.get());
     }
 
     @Override

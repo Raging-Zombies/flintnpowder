@@ -15,6 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.BlazelockBase;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.ammo.RifleRound;
 import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShell;
 import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellDragon;
@@ -34,9 +35,9 @@ public class BreakActionCoachgun extends BlazelockBase {
         shootCooldownTicks = 5;
         needCocking = false;
 
-        addAllowedAmmo(ShotgunShell.class);
-        addAllowedAmmo(ShotgunShellSlug.class);
-        addAllowedAmmo(ShotgunShellDragon.class);
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELL.get());
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELLSLUG.get());
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELLDRAGON.get());
     }
 
     @Override

@@ -15,10 +15,12 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.BlazelockBase;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.ammo.PistolRound;
 import org.ragingzombies.flintnpowder.item.ammo.RifleRound;
 import org.ragingzombies.flintnpowder.item.attachments.HighProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
+import org.ragingzombies.flintnpowder.item.attachments.ModItemsAttachments;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
@@ -32,10 +34,10 @@ public class TrapdoorRifle extends BlazelockBase {
         shootCooldownTicks = 15;
         needCocking = true;
 
-        addAllowedAmmo(RifleRound.class);
+        addAllowedAmmo(ModItemsAmmo.RIFLEROUND.get());
 
-        addAllowedAttachment(HighProfileOptic.class);
-        addAllowedAttachment(LowProfileOptic.class);
+        addAllowedAttachment(ModItemsAttachments.HIGHPROFILEOPTIC.get());
+        addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
     }
 
     @Override

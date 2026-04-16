@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
 import org.ragingzombies.flintnpowder.item.ammo.CopperRoundshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.attachments.Bayonet;
 import org.ragingzombies.flintnpowder.item.attachments.HighProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
@@ -54,12 +55,12 @@ public class Musket extends FlintlockBase {
         gunpowderCooldownTicks = 20;
         ramrodCooldownTicks = 60;
 
-        addAllowedAmmo(CastIronRoundshot.class);
-        addAllowedAmmo(SteelRoundshot.class);
+        addAllowedAmmo(ModItemsAmmo.CASTIRONROUNDSHOT.get());
+        addAllowedAmmo(ModItemsAmmo.STEELROUNDSHOT.get());
 
-        addAllowedAttachment(Bayonet.class);
-        addAllowedAttachment(HighProfileOptic.class);
-        addAllowedAttachment(LowProfileOptic.class);
+        addAllowedAttachment(ModItemsAttachments.BAYONET.get());
+        addAllowedAttachment(ModItemsAttachments.HIGHPROFILEOPTIC.get());
+        addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
 
         this.lazyAttributeMap = Lazy.of(() -> {
             ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
