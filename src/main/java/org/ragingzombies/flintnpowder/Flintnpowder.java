@@ -36,9 +36,9 @@ public class Flintnpowder {
         ModCreativeModTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
-        ModItemsGuns.register(modEventBus);
         ModItemsAmmo.register(modEventBus);
         ModItemsAttachments.register(modEventBus);
+        ModItemsGuns.register(modEventBus);
 
         ModSounds.register(modEventBus);
         ModProjectiles.register(modEventBus);

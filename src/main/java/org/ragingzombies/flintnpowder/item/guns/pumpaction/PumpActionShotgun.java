@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.ragingzombies.flintnpowder.core.guns.PumpActionBase;
 import org.ragingzombies.flintnpowder.item.ammo.CastIronRoundshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.attachments.HighProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.ModItemsAttachments;
 import org.ragingzombies.flintnpowder.item.attachments.Silencer;
@@ -33,11 +34,11 @@ public class PumpActionShotgun extends PumpActionBase {
     public PumpActionShotgun(Properties pProperties) {
         super(pProperties);
 
-        addAllowedAmmo(ShotgunShell.class);
-        addAllowedAmmo(ShotgunShellSlug.class);
-        addAllowedAmmo(ShotgunShellDragon.class);
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELL.get());
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELLSLUG.get());
+        addAllowedAmmo(ModItemsAmmo.SHOTGUNSHELLDRAGON.get());
 
-        addAllowedAttachment(Silencer.class);
+        addAllowedAttachment(ModItemsAttachments.SILENCER.get());
     }
 
     @Override

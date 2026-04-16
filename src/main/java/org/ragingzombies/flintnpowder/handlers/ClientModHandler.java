@@ -58,6 +58,14 @@ public class ClientModHandler {
                     return stack.getOrCreateTag().getBoolean("HaveBayonet") ? 1.0F : 0.0F;
                 }
         );
+        // Blunderbuss
+        ItemProperties.register(
+                ModItemsGuns.BLUNDERBUSS.get(),
+                new ResourceLocation(MOD_ID, "blunderbuss_primed"),
+                (stack, level, entity, seed) -> {
+                    return stack.getOrCreateTag().getBoolean("IsCocked") ? 1.0F : 0.0F;
+                }
+        );
         // Coachgun
         ItemProperties.register(
                 ModItemsGuns.BREAKACTIONCOACHGUN.get(),

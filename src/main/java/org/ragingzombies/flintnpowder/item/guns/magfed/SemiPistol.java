@@ -16,6 +16,7 @@ import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
 import org.ragingzombies.flintnpowder.core.guns.MagfedBase;
 import org.ragingzombies.flintnpowder.item.ammo.CastIronRoundshot;
 import org.ragingzombies.flintnpowder.item.ammo.CopperRoundshot;
+import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
 import org.ragingzombies.flintnpowder.item.ammo.magazines.HandgunMag;
 import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
 import org.ragingzombies.flintnpowder.item.attachments.ModItemsAttachments;
@@ -31,10 +32,10 @@ public class SemiPistol extends MagfedBase {
         super(pProperties);
         shootCooldownTicks = 10;
 
-        addAllowedMagazine(HandgunMag.class);
+        addAllowedMagazine(ModItemsAmmo.HANDGUNMAG.get());
 
-        addAllowedAttachment(LowProfileOptic.class);
-        addAllowedAttachment(Silencer.class);
+        addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
+        addAllowedAttachment(ModItemsAttachments.SILENCER.get());
     }
 
     @Override

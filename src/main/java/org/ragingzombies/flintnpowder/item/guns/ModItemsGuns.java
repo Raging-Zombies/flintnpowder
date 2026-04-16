@@ -29,6 +29,8 @@ public class ModItemsGuns {
             () -> new Musket(new Musket.Properties().stacksTo(1)));
     public static final RegistryObject<Item> PISTOL = ITEMS.register("pistol",
             () -> new Pistol(new Pistol.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> BLUNDERBUSS = ITEMS.register("blunderbuss",
+            () -> new Blunderbuss(new Blunderbuss.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> FLINTER = ITEMS.register("flinter",
             () -> new Flinter(new Flinter.Properties().stacksTo(1)));

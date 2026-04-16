@@ -178,6 +178,5 @@ public class PumpActionBase extends GunBase {
                 pTooltipComponents.add(Component.translatable("flintnpowder.uncocked").withStyle(format));
             }
         }
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

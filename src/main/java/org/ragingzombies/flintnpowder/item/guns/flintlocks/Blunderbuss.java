@@ -1,56 +1,70 @@
 package org.ragingzombies.flintnpowder.item.guns.flintlocks;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.util.Lazy;
 import org.ragingzombies.flintnpowder.core.guns.FlintlockBase;
-import org.ragingzombies.flintnpowder.item.ammo.CastIronRoundshot;
-import org.ragingzombies.flintnpowder.item.ammo.CopperRoundshot;
 import org.ragingzombies.flintnpowder.item.ammo.ModItemsAmmo;
-import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShell;
-import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellDragon;
-import org.ragingzombies.flintnpowder.item.ammo.shotgun.ShotgunShellSlug;
-import org.ragingzombies.flintnpowder.item.attachments.LowProfileOptic;
-import org.ragingzombies.flintnpowder.item.attachments.Silencer;
+import org.ragingzombies.flintnpowder.item.attachments.ModItemsAttachments;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class Pistol extends FlintlockBase {
-    public Pistol(Properties pProperties) {
+public class Blunderbuss extends FlintlockBase {
+    public Blunderbuss(Properties pProperties) {
         super(pProperties);
-        shootCooldownTicks = 10;
-        gunpowderCooldownTicks = 15;
-        ramrodCooldownTicks = 40;
+
+        shootCooldownTicks = 20;
+        gunpowderCooldownTicks = 20;
+        ramrodCooldownTicks = 60;
 
         addAllowedAmmo(ModItemsAmmo.CASTIRONROUNDSHOT.get());
-        addAllowedAmmo(ModItemsAmmo.COPPERROUNDSHOT.get());
+        addAllowedAmmo(ModItemsAmmo.STEELROUNDSHOT.get());
+        addAllowedAmmo(ModItemsAmmo.FLAMINGBUCKSHOT.get());
     }
 
     @Override
     public float accuracyModifier(UUID ply) {
-        return 2 * super.accuracyModifier(ply);
+        return 2.5F * super.accuracyModifier(ply);
+    }
+
+    @Override
+    public void onStuff(Level pLevel, LivingEntity shooter, ItemStack gun, InteractionHand pUsedHand) {
+        pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
+                ModSounds.RAMROD.get(), SoundSource.NEUTRAL, 1.0F, 0.8F, 0);
+
+        if (shooter instanceof Player ply) {
+            ply.getCooldowns().addCooldown(this, 35);
+        }
     }
 
     @Override
     public void onShoot(Level pLevel, LivingEntity shooter, ItemStack gunStack) {
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
-                ModSounds.PISTOLSHOOT.get(), SoundSource.NEUTRAL, 3.0F, 1.0F, 0);
-        pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
-                ModSounds.PISTOLDISTANTSHOOT.get(), SoundSource.NEUTRAL, 9.0F, 1.0F, 0);
-        pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
                 ModSounds.FLINTSTRIKE.get(), SoundSource.NEUTRAL, 1.0F, 1.0F, 0);
+        pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
+                ModSounds.MUSKETFIRE.get(), SoundSource.NEUTRAL, 3.0F, 1.0F, 0);
+        pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
+                ModSounds.GUNSHOTDISTANT.get(), SoundSource.NEUTRAL, 9.0F, 1.0F, 0);
 
         setReloadAnimation(gunStack);
 
@@ -98,8 +112,9 @@ public class Pistol extends FlintlockBase {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.literal(""));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.pistol.description_0"));
-        pTooltipComponents.add(Component.translatable("item.flintnpowder.pistol.description_1"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.musket.description_0"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.musket.description_1"));
+        pTooltipComponents.add(Component.translatable("item.flintnpowder.musket.description_2"));
         pTooltipComponents.add(Component.literal(""));
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseMagazine extends Item {
-    public static List<Class> allowedAmmo = new ArrayList<>();
+    public static List<Item> allowedAmmo = new ArrayList<>();
 
     public static int maxAmmo = 30;
 
@@ -28,13 +28,13 @@ public class BaseMagazine extends Item {
         super(pProperties);
     }
 
-    public static void addAllowedAmmo(Class ammo) {
+    public static void addAllowedAmmo(Item ammo) {
         allowedAmmo.add(ammo);
     }
 
     public boolean allowAmmo(ItemStack ammo) {
-        for (Class a : allowedAmmo) {
-            if (ammo.getItem().getClass() == a) {
+        for (Item a : allowedAmmo) {
+            if (ammo.getItem().getClass() == a.getClass()) {
                 return true;
             }
         }

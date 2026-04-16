@@ -1,9 +1,13 @@
 package org.ragingzombies.flintnpowder.core.guns;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
@@ -21,6 +25,7 @@ import org.ragingzombies.flintnpowder.core.attachments.AttachmentBase;
 import org.ragingzombies.flintnpowder.handlers.AttachmentRenderer;
 import org.ragingzombies.flintnpowder.handlers.ClientModHandler;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
+import org.spongepowered.asm.mixin.Mutable;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -38,8 +43,8 @@ public class GunBase extends Item {
     public int ramrodCooldownTicks = 20;
     public int reloadPitch = 1;
 
-    public List<Class> allowedAmmo = new ArrayList<>();
-    public List<Class> allowedAttachments = new ArrayList<>();
+    public List<Item> allowedAmmo = new ArrayList<>();
+    public List<Item> allowedAttachments = new ArrayList<>();
 
     public GunBase(Properties pProperties) {
         super(pProperties);
@@ -120,18 +125,17 @@ public class GunBase extends Item {
         return shootCooldownTicks;
     }
 
-    public void addAllowedAmmo(Class ammo) {
+    public void addAllowedAmmo(Item ammo) {
         allowedAmmo.add(ammo);
     }
 
-    public void addAllowedAttachment(Class ammo) {
-        allowedAttachments.add(ammo);
+    public void addAllowedAttachment(Item attach) {
+        allowedAttachments.add(attach);
     }
 
     public boolean checkAmmo(Item ammo) {
-        for (Class a : allowedAmmo) {
-            Flintnpowder.LOGGER.info(a.getName());
-            if (ammo.getClass() == a) {
+        for (Item a : allowedAmmo) {
+            if (ammo.getClass() == a.getClass()) {
                 return true;
             }
         }
@@ -140,9 +144,8 @@ public class GunBase extends Item {
     }
 
     public boolean checkAttachmentComparability(Player ply, ItemStack gun, Item attachment) {
-        for (Class a : allowedAttachments) {
-            Flintnpowder.LOGGER.info(a.getName());
-            if (attachment.getClass() == a) {
+        for (Item a : allowedAttachments) {
+            if (attachment.getClass() == a.getClass()) {
                 return true;
             }
         }
@@ -264,6 +267,7 @@ public class GunBase extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+
         int totalAttach = 0;
         for (String type : attachmentTypes) {
             if (isAttachmentValidAndEnabled(pStack, type)) {
@@ -277,6 +281,27 @@ public class GunBase extends Item {
         if (totalAttach > 0) {
             pTooltipComponents.add(Component.literal(""));
         }
+
+
+        if (!Screen.hasShiftDown()) {
+            pTooltipComponents.add(Component.translatable("flintnpowder.guninfoshift"));
+            pTooltipComponents.add(Component.literal(""));
+        } else {
+            pTooltipComponents.add(Component.translatable("flintnpowder.guninfoammo"));
+            for (Item ammo : allowedAmmo) {
+                pTooltipComponents.add(Component.literal("   ").append((new ItemStack(ammo)).getDisplayName()));
+            }
+
+            pTooltipComponents.add(Component.literal(""));
+
+            pTooltipComponents.add(Component.translatable("flintnpowder.guninfoattachment"));
+            for (Item ammo : allowedAttachments) {
+                pTooltipComponents.add(Component.literal("   ").append((new ItemStack(ammo)).getDisplayName()));
+            }
+
+            pTooltipComponents.add(Component.literal(""));
+        }
+        //
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

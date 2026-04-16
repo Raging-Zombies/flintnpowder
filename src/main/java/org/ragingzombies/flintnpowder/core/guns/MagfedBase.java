@@ -26,15 +26,15 @@ public class MagfedBase extends GunBase {
         super(pProperties);
     }
 
-    public static List<Class> allowedMags = new ArrayList<>();
+    public static List<Item> allowedMags = new ArrayList<>();
 
-    public static void addAllowedMagazine(Class mag) {
+    public static void addAllowedMagazine(Item mag) {
         allowedMags.add(mag);
     }
 
     public boolean checkMagazine(ItemStack mag) {
-        for (Class a : allowedMags) {
-            if (mag.getItem().getClass() == a) {
+        for (Item a : allowedMags) {
+            if (mag.getItem().getClass() == a.getClass()) {
                 return true;
             }
         }

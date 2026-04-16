@@ -15,15 +15,18 @@ public class ModItemsAmmo {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Flintnpowder.MOD_ID);
 
-    public static final RegistryObject<Item> CASTIRONROUNDSHOT = ITEMS.register("castironroundshot",
-            () -> new CastIronRoundshot(new CastIronRoundshot.Properties().stacksTo(32)));
     public static final RegistryObject<Item> STEELROUNDSHOT = ITEMS.register("steel_roundshot",
+            () -> new SteelRoundshot(new SteelRoundshot.Properties().stacksTo(32)));
+    public static final RegistryObject<Item> CASTIRONROUNDSHOT = ITEMS.register("castironroundshot",
             () -> new CastIronRoundshot(new CastIronRoundshot.Properties().stacksTo(32)));
 
     public static final RegistryObject<Item> COPPERROUNDSHOT = ITEMS.register("copper_roundshot",
             () -> new CopperRoundshot(new CopperRoundshot.Properties().stacksTo(32)));
     public static final RegistryObject<Item> COPPERVOLLEYSHOT = ITEMS.register("copper_volleyshot",
             () -> new CopperVolleyshot(new CopperVolleyshot.Properties().stacksTo(32)));
+
+    public static final RegistryObject<Item> FLAMINGBUCKSHOT = ITEMS.register("flaming_buckshot",
+            () -> new FlamingBuckshot(new FlamingBuckshot.Properties().stacksTo(32)));
 
     public static final RegistryObject<Item> PISTOLROUND = ITEMS.register("pistol_round",
             () -> new PistolRound(new PistolRound.Properties().stacksTo(32)));
