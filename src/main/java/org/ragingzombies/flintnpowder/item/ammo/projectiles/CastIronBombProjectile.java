@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.ragingzombies.flintnpowder.Flintnpowder;
 import org.ragingzombies.flintnpowder.handlers.ServerTickHandler;
 import org.ragingzombies.flintnpowder.item.ModItemsAmmo;
 
@@ -115,7 +116,8 @@ public class CastIronBombProjectile extends AbstractArrow implements ItemSupplie
             DamageSource dmg = this.damageSources().arrow( this, this.getOwner());
 
             double speed = this.getDeltaMovement().length();
-            pResult.getEntity().hurt(dmg, damage + (float) speed);
+
+            pResult.getEntity().hurt(dmg, damage);
 
             collisionParticles();
         }

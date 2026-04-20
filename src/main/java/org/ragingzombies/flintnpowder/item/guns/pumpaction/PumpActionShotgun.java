@@ -166,7 +166,7 @@ public class PumpActionShotgun extends PumpActionBase {
         setReloadAnimation(gun);
 
         if (shooter instanceof Player) {
-            ((Player) shooter).getCooldowns().addCooldown(this, shootCooldown(shooter, gun));
+            ((Player) shooter).getCooldowns().addCooldown(this, ammoCooldown(shooter, gun));
         }
     }
 

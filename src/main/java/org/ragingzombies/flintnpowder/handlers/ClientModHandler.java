@@ -172,6 +172,28 @@ public class ClientModHandler {
                     return stack.getOrCreateTag().getBoolean("HaveMag") ? 0.0F : 1.0F;
                 }
         );
+        ItemProperties.register(
+                ModItemsGuns.CLOSEDBOLTBATTLERIFLE.get(),
+                new ResourceLocation(MOD_ID, "closed_bolt_mag_rifle_priming"),
+                (stack, level, entity, seed) -> {
+                    return stack.getOrCreateTag().getBoolean("SlideCocked") ? 1.0F : 0.0F;
+                }
+        );
+        // GAS OPERATED SHOTGUN
+        ItemProperties.register(
+                ModItemsGuns.GASOPERATEDSHOTGUN.get(),
+                new ResourceLocation(MOD_ID, "gas_operated_shotgun_unloaded"),
+                (stack, level, entity, seed) -> {
+                    return stack.getOrCreateTag().getBoolean("HaveMag") ? 0.0F : 1.0F;
+                }
+        );
+        ItemProperties.register(
+                ModItemsGuns.GASOPERATEDSHOTGUN.get(),
+                new ResourceLocation(MOD_ID, "gas_operated_shotgun_priming"),
+                (stack, level, entity, seed) -> {
+                    return stack.getOrCreateTag().getBoolean("SlideCocked") ? 1.0F : 0.0F;
+                }
+        );
 
 
         // Cast Iron Roundshot Projectile

@@ -99,7 +99,7 @@ public class CopperRoundshotProjectile extends AbstractArrow implements ItemSupp
             DamageSource dmg = this.damageSources().arrow( this, this.getOwner());
 
             double speed = this.getDeltaMovement().length();
-            pResult.getEntity().hurt(dmg, damage + (float) speed);
+            pResult.getEntity().hurt(dmg, damage);
 
             collisionParticles();
             this.discard();

@@ -11,10 +11,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
 import org.ragingzombies.flintnpowder.ModItems;
 import org.ragingzombies.flintnpowder.core.ammo.BaseAmmo;
+import org.ragingzombies.flintnpowder.enchantments.ModEnchantments;
 import org.ragingzombies.flintnpowder.sound.ModSounds;
 
 import javax.annotation.Nullable;
@@ -30,8 +33,21 @@ public class FlintlockBase extends GunBase {
     public int ramrodCooldownTicks = 20;
     public int gunpowderCooldownTicks = 20;
 
-    public int gunpowderCooldown(Player ply, ItemStack gunStack) { return gunpowderCooldownTicks; }
-    public int ramrodCooldown(Player ply, ItemStack gunStack) { return ramrodCooldownTicks; }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment == ModEnchantments.RAMROD_MASTERY.get() ||
+                super.canApplyAtEnchantingTable(stack, enchantment);
+    }
+
+    public int gunpowderCooldown(Player ply, ItemStack gunStack) {
+        int amoLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SWIFT_RELOAD.get(), gunStack);
+        return gunpowderCooldownTicks - (gunpowderCooldownTicks/4) * amoLevel;
+    }
+    public int ramrodCooldown(Player ply, ItemStack gunStack) {
+        int amoLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RAMROD_MASTERY.get(), gunStack);
+        return ramrodCooldownTicks - (ramrodCooldownTicks/4) * amoLevel;
+    }
 
     public void onGunpowder(Level pLevel, LivingEntity shooter, ItemStack gun, InteractionHand pUsedHand) {
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),

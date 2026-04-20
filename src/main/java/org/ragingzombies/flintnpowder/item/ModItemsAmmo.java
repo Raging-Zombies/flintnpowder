@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.ragingzombies.flintnpowder.Flintnpowder;
 import org.ragingzombies.flintnpowder.item.ammo.*;
+import org.ragingzombies.flintnpowder.item.ammo.clips.RifleRoundClip;
 import org.ragingzombies.flintnpowder.item.ammo.magazines.BattleRifleMag;
 import org.ragingzombies.flintnpowder.item.ammo.magazines.ExtendedHandgunMag;
 import org.ragingzombies.flintnpowder.item.ammo.magazines.HandgunMag;
@@ -47,6 +48,9 @@ public class ModItemsAmmo {
             () -> new PistolRound(new PistolRound.Properties().stacksTo(32)));
     public static final RegistryObject<Item> RIFLEROUND = ITEMS.register("rifle_round",
             () -> new RifleRound(new RifleRound.Properties().stacksTo(32)));
+
+    public static final RegistryObject<Item> RIFLEROUNDCLIP = ITEMS.register("rifle_round_clip",
+            () -> new RifleRoundClip(new RifleRoundClip.Properties().stacksTo(4)));
 
     public static final RegistryObject<Item> FLAMINGGRAPESHOT = ITEMS.register("greek_fire_buckshot",
             () -> new FlamingGrapeshot(new FlamingGrapeshot.Properties().stacksTo(32)));

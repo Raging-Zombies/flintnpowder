@@ -51,6 +51,7 @@ public class GunBase extends Item {
 
     public int cooldownTicks = 20;
     public int shootCooldownTicks = 20;
+    public int ammoCooldownTicks = 20;
     public int reloadPitch = 1;
 
     public List<Item> allowedAmmo = new ArrayList<>();
@@ -81,8 +82,16 @@ public class GunBase extends Item {
     }
 
     @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment == ModEnchantments.QUALITY_PROPELLANT.get() || super.canApplyAtEnchantingTable(stack, enchantment);
+        return enchantment == ModEnchantments.QUALITY_PROPELLANT.get() ||
+                enchantment == ModEnchantments.TRIGGER_FINGER.get() ||
+                enchantment == ModEnchantments.SWIFT_RELOAD.get() ||
+                super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
     @Override
@@ -170,8 +179,14 @@ public class GunBase extends Item {
         gun.getOrCreateTag().putBoolean("IsAiming", false);
     }
 
+    public int ammoCooldown(LivingEntity ply, ItemStack gun) {
+        int amoLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SWIFT_RELOAD.get(), gun);
+        return ammoCooldownTicks - (int) (ammoCooldownTicks/4F) * amoLevel;
+    }
+
     public int shootCooldown(LivingEntity ply, ItemStack gun) {
-        return shootCooldownTicks;
+        int amoLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.TRIGGER_FINGER.get(), gun);
+        return shootCooldownTicks - (int) (shootCooldownTicks/4F) * amoLevel;
     }
 
     public void addAllowedAmmo(Item ammo) {
@@ -310,7 +325,7 @@ public class GunBase extends Item {
                 ModSounds.RIFLERELOAD.get(), SoundSource.NEUTRAL, 1.0F, 1.0F, 0);
 
         if (shooter instanceof Player) {
-            ((Player) shooter).getCooldowns().addCooldown(this, shootCooldown(shooter, gun));
+            ((Player) shooter).getCooldowns().addCooldown(this, ammoCooldown(shooter, gun));
         }
     }
 

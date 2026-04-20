@@ -23,6 +23,7 @@
   "flintnpowder.ready_to_shoot": "Ready to shoot",
 
   "flintnpowder.attachment": "Attachment: ",
+  "flintnpowder.contains": "§2Contains: ",
   "flintnpowder.ammo": "Ammo: ",
   "flintnpowder.projectile_damage": "Projectile damage: ",
 
@@ -100,6 +101,8 @@
   "item.flintnpowder.pistol_round": "Pistol Round",
   "item.flintnpowder.rifle_round": "Rifle Round",
   "item.flintnpowder.battleriflemagazine": "Battle Rifle Magazine",
+  "item.flintnpowder.shotgun_magazine": "Shotgun Magazine",
+  "item.flintnpowder.rifle_round_clip": "Gas Operated Shotgun",
 
   "item.flintnpowder.flinter": "Flinter",
   "item.flintnpowder.flinter.description_0": "§6Hole and steel: Flint is required to fire",
@@ -167,7 +170,11 @@
   "item.flintnpowder.open_bolt_smg.description_1": "§4-20% Projectile damage",
 
   "item.flintnpowder.closed_bolt_mag_rifle": "Closed Bolt Battle Rifle",
+  "item.flintnpowder.gas_operated_shotgun": "Gas Operated Shotgun",
 
 
-  "enchantment.flintnpowder.ghost_loading": "Ghost Loading"
+  "enchantment.flintnpowder.ghost_loading": "Ghost Loading",
+  "enchantment.flintnpowder.quality_propellant": "Quality Propellant",
+  "enchantment.flintnpowder.swift_reload": "Swift Reload",
+  "enchantment.flintnpowder.ramrod_mastery": "Ramrod Mastery"
 }

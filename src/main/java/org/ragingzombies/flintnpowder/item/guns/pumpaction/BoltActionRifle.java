@@ -46,6 +46,7 @@ public class BoltActionRifle extends PumpActionBase {
         this.shootCooldownTicks = 20;
 
         addAllowedAmmo(ModItemsAmmo.RIFLEROUND.get());
+        addAllowedAmmo(ModItemsAmmo.RIFLEROUNDCLIP.get());
 
         addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
         addAllowedAttachment(ModItemsAttachments.HIGHPROFILEOPTIC.get());
@@ -196,7 +197,7 @@ public class BoltActionRifle extends PumpActionBase {
         setReloadAnimation(gun);
 
         if (shooter instanceof Player) {
-            ((Player) shooter).getCooldowns().addCooldown(this, shootCooldown(shooter, gun));
+            ((Player) shooter).getCooldowns().addCooldown(this, ammoCooldown(shooter, gun));
         }
     }
 

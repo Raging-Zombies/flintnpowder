@@ -32,7 +32,7 @@ public class ShotgunShell extends BaseAmmo {
         Random rand = new Random();
         for (int i = 0; i < 9; i++) {
             float angle = rand.nextFloat((float) (2.0F*Math.PI));
-            float radius = rand.nextFloat(25);
+            float radius = rand.nextFloat(7 );
 
             BuckshotProjectile proj = new BuckshotProjectile(level, shooter);
 

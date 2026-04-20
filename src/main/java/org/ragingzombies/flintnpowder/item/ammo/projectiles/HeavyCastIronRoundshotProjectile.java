@@ -100,7 +100,7 @@ public class HeavyCastIronRoundshotProjectile extends AbstractArrow implements I
             DamageSource dmg = this.damageSources().arrow( this, this.getOwner());
 
             double speed = this.getDeltaMovement().length();
-            pResult.getEntity().hurt(dmg, damage + (float) speed);
+            pResult.getEntity().hurt(dmg, damage);
 
             this.level().playSeededSound(null, this.getX(), this.getY(), this.getZ(),
                     SoundEvents.ANVIL_PLACE, SoundSource.NEUTRAL, 4.0F, .5F, 0);

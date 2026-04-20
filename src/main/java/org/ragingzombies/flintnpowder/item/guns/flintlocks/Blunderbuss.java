@@ -37,13 +37,14 @@ public class Blunderbuss extends FlintlockBase {
         return 2.5F * super.accuracyModifier(ply, gun);
     }
 
-    @Override
     public void onStuff(Level pLevel, LivingEntity shooter, ItemStack gun, InteractionHand pUsedHand) {
         pLevel.playSeededSound(null, shooter.getBlockX(), shooter.getBlockY(), shooter.getBlockZ(),
-                ModSounds.RAMROD.get(), SoundSource.NEUTRAL, 1.0F, 0.8F, 0);
+                ModSounds.RAMROD.get(), SoundSource.NEUTRAL, 5.0F, 1.0F, 0);
+
+        setAimAnimation(gun);
 
         if (shooter instanceof Player ply) {
-            ply.getCooldowns().addCooldown(this, 35);
+            ply.getCooldowns().addCooldown(this, ramrodCooldown(ply, gun));
         }
     }
 

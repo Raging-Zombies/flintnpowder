@@ -16,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import org.ragingzombies.flintnpowder.Flintnpowder;
 import org.ragingzombies.flintnpowder.core.ammo.BaseAmmo;
 import org.ragingzombies.flintnpowder.enchantments.ModEnchantments;
 
@@ -63,13 +64,29 @@ public class PumpActionBase extends GunBase {
         return gun.getTag().getInt("Ammo");
     }
 
-    public void AddAmmo(ItemStack gun, ItemStack ammo) {
-        int curAmmo = gun.getTag().getInt("Ammo");
-        curAmmo++;
-        gun.getTag().putInt("Ammo", curAmmo);
+    public void AddAmmo(Player shooter, ItemStack gun, ItemStack ammo) {
+        BaseAmmo ammoType = (BaseAmmo) ammo.getItem();
+        int totalInClip = ammoType.ammoCountInOne(ammo);
 
-        CompoundTag ammoData = ammo.serializeNBT();
-        gun.getTag().put("AmmoType" + curAmmo, ammoData);
+        ItemStack ammoStack = ammoType.getAmmoItemStack(ammo);
+
+        for (int i = 0; i < ammoType.ammoCountInOne(ammo); i++) {
+            int curAmmo = gun.getTag().getInt("Ammo");
+            curAmmo++;
+
+            if (curAmmo > GetMaxAmmoAmount(gun)) continue;
+            totalInClip--;
+
+            gun.getTag().putInt("Ammo", curAmmo);
+
+            CompoundTag ammoData = ammoStack.serializeNBT();
+            gun.getTag().put("AmmoType" + curAmmo, ammoData);
+        }
+
+        if (totalInClip > 0) {
+            ammoStack.setCount(totalInClip);
+            shooter.getInventory().add(ammoStack);
+        }
 
         ammo.shrink(1);
     }
@@ -123,7 +140,7 @@ public class PumpActionBase extends GunBase {
             }
 
             if (!needCockToReload && checkAmmo(secondItemStack.getItem()) && GetAmmoAmount(gunStack) < GetMaxAmmoAmount(gunStack)) {
-                AddAmmo(gunStack, secondItemStack);
+                AddAmmo(pPlayer, gunStack, secondItemStack);
                 onAmmo(pLevel, pPlayer, gunStack, secondItemStack, pUsedHand);
             } else if (!gunStack.getTag().getBoolean("IsUncocked")) {
                 if (gunStack.getTag().getBoolean("ReadyToShoot")) {
@@ -143,7 +160,7 @@ public class PumpActionBase extends GunBase {
                 }
             } else {
                 if (needCockToReload && checkAmmo(secondItemStack.getItem()) && GetAmmoAmount(gunStack) < GetMaxAmmoAmount(gunStack)) {
-                    AddAmmo(gunStack, secondItemStack);
+                    AddAmmo(pPlayer, gunStack, secondItemStack);
                     onAmmo(pLevel, pPlayer, gunStack, secondItemStack, pUsedHand);
                 } else {
                     gunStack.getTag().putBoolean("IsUncocked", false);
