@@ -85,7 +85,9 @@ public class PumpActionBase extends GunBase {
 
         if (totalInClip > 0) {
             ammoStack.setCount(totalInClip);
-            shooter.getInventory().add(ammoStack);
+            if (!shooter.getInventory().add(ammoStack)) {
+                shooter.drop(ammoStack, false);
+            }
         }
 
         ammo.shrink(1);

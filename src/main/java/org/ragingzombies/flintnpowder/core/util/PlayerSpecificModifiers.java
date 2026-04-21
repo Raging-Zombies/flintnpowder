@@ -15,8 +15,47 @@ public class PlayerSpecificModifiers {
     public static PlayerSpecificModifiers INSTANCE = new PlayerSpecificModifiers();
     public static Map<UUID, PlayerSpecificModifierData> playerData = new HashMap<>();
 
-    public boolean isUUIDRegistered(UUID id) {
+    public static boolean isUUIDRegistered(UUID id) {
         return playerData.containsKey(id);
+    }
+
+
+    public static void setPSMDamage(UUID id, float stat) {
+        if (isUUIDRegistered(id)) {
+            playerData.get(id).damageModifier = stat;
+        }
+    }
+    public static void setPSMRecoil(UUID id, float stat) {
+        if (isUUIDRegistered(id)) {
+            playerData.get(id).recoilModifier = stat;
+        }
+    }
+    public static void setPSMAccuracy(UUID id, float stat) {
+        if (isUUIDRegistered(id)) {
+            playerData.get(id).accuracyModifier = stat;
+        }
+    }
+
+    public static float getPSMDamage(UUID id) {
+        if (!isUUIDRegistered(id)) {
+            return playerData.get(id).damageModifier;
+        }
+        return 1;
+    }
+
+    public static float getPSMRecoil(UUID id) {
+        if (!isUUIDRegistered(id)) {
+            return playerData.get(id).recoilModifier;
+        }
+        return 1;
+    }
+
+
+    public static float getPSMAccuracy(UUID id) {
+        if (!isUUIDRegistered(id)) {
+            return playerData.get(id).accuracyModifier;
+        }
+        return 1;
     }
 
     public void registerUUID(UUID id) {

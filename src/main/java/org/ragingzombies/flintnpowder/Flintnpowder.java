@@ -1,6 +1,7 @@
 package org.ragingzombies.flintnpowder;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -53,7 +54,46 @@ public class Flintnpowder {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
 
+            event.accept(ModItems.CAST_IRON_INGOT);
+            event.accept(ModItems.CAST_IRON_NUGGET);
+            event.accept(ModItems.CAST_IRON_ALLOY);
+
+            event.accept(ModItems.STEEL_INGOT);
+            event.accept(ModItems.STEEL_NUGGET);
+            event.accept(ModItems.STEEL_ALLOY);
+
+            event.accept(ModItems.GUNMETAL_INGOT);
+            event.accept(ModItems.GUNMETAL_ALLOY);
+
+            event.accept(ModItems.BLAZING_BRASS);
+            event.accept(ModItems.BLAZING_BRASS_ALLOY);
+
+            event.accept(ModItems.PALLADIUM_GREEN);
+
+            event.accept(ModItems.MATCHLOCK_MECHANISM);
+            event.accept(ModItems.FLINTLOCK_MECHANISM);
+            event.accept(ModItems.BLAZE_LOCK_MECHANISM);
+            event.accept(ModItems.ENDLOCK_MECHANISM);
+
+            event.accept(ModItems.CAST_IRON_BARREL);
+            event.accept(ModItems.CAST_IRON_HEAVY_BARREL);
+            event.accept(ModItems.STEEL_BARREL);
+            event.accept(ModItems.STEEL_HEAVY_BARREL);
+            event.accept(ModItems.BLAZING_BRASS_BARREL);
+            event.accept(ModItems.BLAZING_BRASS_HEAVY_BARREL);
+            event.accept(ModItems.GUN_METAL_BARREL);
+            event.accept(ModItems.GUN_METAL_HEAVY_BARREL);
+
+            event.accept(ModItems.WOODEN_GUN_FURNITURE);
+            event.accept(ModItems.PISTOL_GRIP);
+            event.accept(ModItems.OIL_FLASK);
+
+            event.accept(ModItems.CAST_IRON_BORE_DRILL);
+            event.accept(ModItems.DIAMOND_BORE_DRILL);
+            event.accept(ModItems.NETHERITE_BORE_DRILL);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

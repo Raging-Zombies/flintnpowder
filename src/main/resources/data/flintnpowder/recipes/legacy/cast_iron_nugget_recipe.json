@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "flintnpowder:cast_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "flintnpowder:cast_iron_nugget",
+    "count": 9
+  }
+}

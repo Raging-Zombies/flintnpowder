@@ -1,6 +1,7 @@
 package org.ragingzombies.flintnpowder.core.guns;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -98,7 +99,9 @@ public class BlazelockBase extends GunBase {
 
         if (totalInClip > 0) {
             ammoStack.setCount(totalInClip);
-            shooter.getInventory().add(ammoStack);
+            if (!shooter.getInventory().add(ammoStack)) {
+                shooter.drop(ammoStack, false);
+            }
         }
 
         ammo.shrink(1);
@@ -216,10 +219,14 @@ public class BlazelockBase extends GunBase {
                                         Component.literal(String.valueOf(GetMaxAmmoAmount(pStack)))))));
 
                 // Output all loaded ammo
-                for (int i = 0; i < GetAmmoAmount(pStack); i++) {
-                    ItemStack ammoData = ItemStack.of((CompoundTag) pStack.getTag().get("AmmoType" + (i+1)));
+                if (Screen.hasControlDown()) {
+                    for (int i = 0; i < GetAmmoAmount(pStack); i++) {
+                        ItemStack ammoData = ItemStack.of((CompoundTag) pStack.getTag().get("AmmoType" + (i + 1)));
 
-                    pTooltipComponents.add(Component.literal(String.valueOf(i+1)).append(Component.literal(": ")).append(ammoData.getDisplayName()));
+                        pTooltipComponents.add(Component.literal(String.valueOf(i + 1)).append(Component.literal(": ")).append(ammoData.getDisplayName()));
+                    }
+                } else {
+                    pTooltipComponents.add(Component.translatable("flintnpowder.guninfoctrl"));
                 }
             } else {
                 ChatFormatting format;
