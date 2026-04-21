@@ -31,6 +31,7 @@ import net.minecraftforge.common.util.Lazy;
 import org.ragingzombies.flintnpowder.Flintnpowder;
 import org.ragingzombies.flintnpowder.core.ammo.BaseAmmo;
 import org.ragingzombies.flintnpowder.core.attachments.AttachmentBase;
+import org.ragingzombies.flintnpowder.core.util.PlayerSpecificModifiers;
 import org.ragingzombies.flintnpowder.enchantments.ModEnchantments;
 import org.ragingzombies.flintnpowder.handlers.AttachmentRenderer;
 import org.ragingzombies.flintnpowder.handlers.ClientModHandler;
@@ -244,7 +245,9 @@ public class GunBase extends Item {
         ItemStack detached = getAttachmentStack(gun, type);
         ((AttachmentBase) detached.getItem()).onDetach(ply, detached, gun);
         onAttachmentDetach(ply, gun, type);
-        ply.getInventory().add(detached);
+        if (!ply.getInventory().add(detached)) {
+            ply.drop(detached, false);
+        }
         gun.getOrCreateTag().getCompound("Attachments").getCompound(type).putBoolean("enabled", false);
     }
 
@@ -295,17 +298,17 @@ public class GunBase extends Item {
 
     public float damageModifier(UUID shooter, ItemStack gun) {
         int amoLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.QUALITY_PROPELLANT.get(), gun);
-        return 1 + amoLevel*0.10F;
+        return (1 + amoLevel*0.10F) * PlayerSpecificModifiers.getPSMDamage(shooter);
     }
 
     public float recoilModifierX(UUID id, ItemStack gun) {
-        return 1;
+        return 1 * PlayerSpecificModifiers.getPSMRecoil(id);
     }
     public float recoilModifierY(UUID id, ItemStack gun) {
-        return 1;
+        return 1 * PlayerSpecificModifiers.getPSMRecoil(id);
     }
     public float accuracyModifier(UUID id, ItemStack gun) {
-        return 1;
+        return 1 * PlayerSpecificModifiers.getPSMAccuracy(id);
     }
 
 

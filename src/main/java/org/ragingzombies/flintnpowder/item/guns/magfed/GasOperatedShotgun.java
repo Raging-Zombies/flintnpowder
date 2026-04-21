@@ -6,9 +6,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -30,6 +32,19 @@ public class GasOperatedShotgun extends MagfedBase {
 
         addAllowedAttachment(ModItemsAttachments.LOWPROFILEOPTIC.get());
         addAllowedAttachment(ModItemsAttachments.HIGHPROFILEOPTIC.get());
+    }
+
+    @Override
+    public boolean allowPressingTrigger(Level pLevel, LivingEntity pPlayer, ItemStack gun, InteractionHand pUsedHand) {
+        ItemStack secondItemStack;
+        if (pUsedHand == InteractionHand.MAIN_HAND)
+            secondItemStack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
+        else
+            secondItemStack = pPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+
+        if (secondItemStack.is(Items.AIR)) return true;
+
+        return false;
     }
 
     @Override

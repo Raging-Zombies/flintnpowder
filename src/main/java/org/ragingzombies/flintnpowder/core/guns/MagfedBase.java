@@ -110,7 +110,9 @@ public class MagfedBase extends GunBase {
 
         BaseMagazine.SetFromGun(magazineStack, gun);
 
-        ply.getInventory().add(magazineStack);
+        if (!ply.getInventory().add(magazineStack)) {
+            ply.drop(magazineStack, false);
+        }
 
         onMagExtract(ply.level(), ply, gun);
     }
@@ -286,10 +288,14 @@ public class MagfedBase extends GunBase {
                                             Component.literal(String.valueOf(GetMaxAmmoAmount(pStack)))))));
 
                     // Output all loaded ammo
-                    for (int i = 0; i < GetAmmoAmount(pStack); i++) {
-                        ItemStack ammoData = ItemStack.of((CompoundTag) pStack.getTag().get("A" + i));
+                    if (Screen.hasControlDown()) {
+                        for (int i = 0; i < GetAmmoAmount(pStack); i++) {
+                            ItemStack ammoData = ItemStack.of((CompoundTag) pStack.getTag().get("A" + i));
 
-                        pTooltipComponents.add(Component.literal(String.valueOf(i + 1)).append(Component.literal(": ")).append(ammoData.getDisplayName()));
+                            pTooltipComponents.add(Component.literal(String.valueOf(i + 1)).append(Component.literal(": ")).append(ammoData.getDisplayName()));
+                        }
+                    } else {
+                        pTooltipComponents.add(Component.translatable("flintnpowder.guninfoctrl"));
                     }
                 } else {
                     ChatFormatting format;

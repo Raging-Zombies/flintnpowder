@@ -156,7 +156,9 @@ public class BaseMagazine extends Item {
                         SoundEvents.ITEM_PICKUP, SoundSource.NEUTRAL, 1.0F, 1.0F, false);
             } else {
                 ItemStack item = extractLastAmmo(magStack);
-                pPlayer.getInventory().add(item);
+                if (!pPlayer.getInventory().add(item)) {
+                    pPlayer.drop(item, false);
+                }
             }
         }
 
